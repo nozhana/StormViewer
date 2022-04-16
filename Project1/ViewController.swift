@@ -36,5 +36,20 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = pictures[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        Typecast UIViewController (return value for instantiateViewController as DetailViewController
+//        storyboard might be nil if not instantiated from a storyboard, so we use optionals
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+
+//            Modify selectedImage property of DetailViewController to be the filename from indexPath retrieved from pictures indices
+            vc.selectedImage = pictures[indexPath.row]
+            
+//            Push the new view controller using navigationController
+            navigationController?.pushViewController(vc, animated: true)
+        }
+//        If either storyboard? or instantiateViewController or typecasting as? DetailViewController fail, the if let clause isn't executed at all. So the code is "safe" but non-functioning.
+    }
 }
 
