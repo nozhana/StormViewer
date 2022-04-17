@@ -14,6 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if #available(iOS 15.0, *) {
+            let navigationBarAppearance = UINavigationBarAppearance()
+//            Default background for navbar
+            navigationBarAppearance.configureWithDefaultBackground()
+//            navigationBarAppearance.configureWithTransparentBackground()
+//            navigationBarAppearance.configureWithOpaqueBackground()
+            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+            UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+//            scrollEdgeAppearance is what DetailView uses.
+//            in iOS 15, the navbar is transparent for scrollEdgeAppearance.
+//            We set all appearances to default to prevent that.
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        }
+
         return true
     }
 
