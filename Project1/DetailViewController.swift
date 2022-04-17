@@ -20,6 +20,17 @@ class DetailViewController: UIViewController {
         }
     }
     
+//    Hide navbar when view appears
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnTap = true
+    }
+    
+//    Show navbar when view disappears
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnTap = false
+    }
 
     /*
     // MARK: - Navigation
