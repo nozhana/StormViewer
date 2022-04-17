@@ -13,7 +13,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Storm Viewer"
+//        "mainScreenTitle" refers to the translation of "Storm Viewer" in destination language defined in Localizable.string
+        title = String(localized: "mainScreenTitle")
 //        Large title for view controller
         navigationController?.navigationBar.prefersLargeTitles = true
         
