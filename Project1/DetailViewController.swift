@@ -16,9 +16,13 @@ class DetailViewController: UIViewController {
         
 //        Set navbar Title to selected image name
         title = selectedImage
+        
 //        Never display large titles on this view
         navigationItem.largeTitleDisplayMode = .never
-
+        
+//        Add right bar button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        
 //        Unpacking selectedImage as an optional safely and loading it in a UIImage type
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad)
@@ -38,6 +42,17 @@ class DetailViewController: UIViewController {
         super.viewWillDisappear(animated)
 //        Show navbar when view disappears
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    @objc func shareTapped() {
+        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
+            print("No image found")
+            return
+        }
+        
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 
     /*
